@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fahad Mollah | AI / ML Engineering Student</title>
+<meta name="description" content="Fahad Mollah is an AI Engineering student in Ingolstadt working on reinforcement learning, computer vision, and autonomous systems. Looking for a Werkstudent, internship, or thesis role.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-void:#0B0F14;
+    --bg-panel:#121924;
+    --bg-panel-raised:#161F2C;
+    --grid-line:#20293A;
+    --text-primary:#E7EDF4;
+    --text-dim:#7C8B9D;
+    --text-faint:#4B5768;
+    --accent-amber:#F0A93B;
+    --accent-cyan:#5FE3C6;
+    --danger:#E5677B;
+    --font-display:'Space Grotesk', sans-serif;
+    --font-body:'Inter', sans-serif;
+    --font-mono:'JetBrains Mono', monospace;
+    --max-w:920px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg-void);
+    color:var(--text-primary);
+    font-family:var(--font-body);
+    line-height:1.6;
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size:48px 48px;
+    background-attachment:fixed;
+    background-position:center top;
+  }
+  ::selection{background:var(--accent-cyan);color:var(--bg-void);}
+  a{color:inherit;}
+  .wrap{max-width:var(--max-w);margin:0 auto;padding:0 24px;}
+  h1,h2,h3{font-family:var(--font-display);font-weight:600;letter-spacing:-0.01em;}
+  .mono{font-family:var(--font-mono);}
+  :focus-visible{outline:2px solid var(--accent-cyan);outline-offset:3px;}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(11,15,20,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--grid-line);
+  }
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;}
+  .brand{font-family:var(--font-mono);font-size:14px;color:var(--accent-cyan);}
+  .brand .path{color:var(--text-faint);}
+  .navlinks{display:flex;gap:28px;font-family:var(--font-mono);font-size:13px;}
+  .navlinks a{color:var(--text-dim);text-decoration:none;transition:color .15s;}
+  .navlinks a:hover{color:var(--accent-cyan);}
+  .cv-btn{
+    font-family:var(--font-mono);font-size:13px;
+    border:1px solid var(--accent-amber);color:var(--accent-amber);
+    padding:6px 14px;border-radius:3px;text-decoration:none;
+    transition:background .15s, color .15s;
+  }
+  .cv-btn:hover{background:var(--accent-amber);color:var(--bg-void);}
+  @media(max-width:640px){.navlinks{display:none;}}
+
+  /* ---------- HERO ---------- */
+  header.hero{padding:90px 0 60px;position:relative;overflow:hidden;}
+  #nn-bg{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.55;}
+  .hero-inner{position:relative;z-index:1;display:grid;grid-template-columns:1fr 260px;gap:48px;align-items:center;}
+  .eyebrow{
+    font-family:var(--font-mono);font-size:13px;color:var(--text-dim);
+    display:flex;align-items:center;gap:10px;margin-bottom:18px;
+  }
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--accent-cyan);
+    box-shadow:0 0 8px var(--accent-cyan); animation:pulse 2s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
+  h1.name{font-size:clamp(36px,6vw,58px);line-height:1.05;margin-bottom:14px;}
+  h1.name .cursor{display:inline-block;width:.5ch;background:var(--accent-cyan);
+    animation:blink 1s step-end infinite;margin-left:4px;height:0.85em;vertical-align:-0.1em;}
+  @keyframes blink{50%{opacity:0;}}
+  .tagline{font-size:clamp(16px,2.2vw,20px);color:var(--text-dim);max-width:640px;margin-bottom:28px;}
+  .tagline .hl{color:var(--accent-amber);}
+  .hero-links{display:flex;flex-wrap:wrap;gap:12px;}
+  .pill{
+    font-family:var(--font-mono);font-size:13px;color:var(--text-primary);
+    border:1px solid var(--grid-line);padding:8px 14px;border-radius:20px;
+    text-decoration:none;display:flex;align-items:center;gap:8px;
+    transition:border-color .15s, transform .15s;
+  }
+  .pill:hover{border-color:var(--accent-cyan);transform:translateY(-1px);}
+  .pill.primary{background:var(--accent-cyan);color:var(--bg-void);border-color:var(--accent-cyan);font-weight:600;}
+  .pill.primary:hover{background:var(--text-primary);border-color:var(--text-primary);}
+
+  .hero-photo{display:flex;flex-direction:column;align-items:center;gap:10px;}
+  .photo-frame{
+    width:220px;height:220px;border-radius:10px;overflow:hidden;position:relative;
+    border:1px solid var(--grid-line);background:var(--bg-panel);
+    box-shadow:0 20px 50px -20px rgba(0,0,0,.7);
+  }
+  .photo-frame img{width:100%;height:100%;object-fit:cover;display:block;}
+  .photo-frame.no-photo img{display:none;}
+  .photo-fallback{display:none;}
+  .photo-frame.no-photo .photo-fallback{
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    height:100%;font-family:var(--font-mono);font-size:13px;color:var(--text-faint);text-align:center;gap:6px;
+  }
+  .photo-frame.no-photo .photo-fallback span{font-size:11px;color:var(--text-faint);opacity:.7;}
+  .photo-tag{font-size:11px;color:var(--text-faint);}
+  .photo-dim{color:var(--text-faint);opacity:.6;}
+  @media(max-width:760px){.hero-inner{grid-template-columns:1fr;}.hero-photo{order:-1;}.photo-frame{width:140px;height:140px;}}
+
+  /* ---------- SECTION SHELL ---------- */
+  section{padding:70px 0;border-top:1px solid var(--grid-line);}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:36px;}
+  .sec-num{font-family:var(--font-mono);color:var(--accent-amber);font-size:14px;}
+  .sec-title{font-size:26px;}
+  .sec-sub{font-family:var(--font-mono);font-size:13px;color:var(--text-faint);margin-left:auto;}
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{display:grid;grid-template-columns:1fr 260px;gap:48px;align-items:start;}
+  .about p{color:var(--text-dim);margin-bottom:16px;max-width:56ch;}
+  .about strong{color:var(--text-primary);font-weight:500;}
+  .facts{font-family:var(--font-mono);font-size:13px;border:1px solid var(--grid-line);border-radius:6px;overflow:hidden;}
+  .facts .row{display:flex;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--grid-line);}
+  .facts .row:last-child{border-bottom:none;}
+  .facts .k{color:var(--text-faint);}
+  .facts .v{color:var(--text-primary);text-align:right;}
+  @media(max-width:760px){.about-grid{grid-template-columns:1fr;}}
+
+  /* ---------- SKILLS ---------- */
+  .skill-groups{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  .skill-card{background:var(--bg-panel);border:1px solid var(--grid-line);border-radius:6px;padding:20px;}
+  .skill-card h4{font-family:var(--font-mono);font-size:12px;color:var(--accent-cyan);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;}
+  .tag{font-family:var(--font-mono);font-size:12px;color:var(--text-dim);
+    border:1px solid var(--grid-line);padding:4px 10px;border-radius:4px;background:var(--bg-panel-raised);}
+  @media(max-width:640px){.skill-groups{grid-template-columns:1fr;}}
+
+  /* ---------- LIVE DEMO (signature) ---------- */
+  .demo-frame{
+    border:1px solid var(--grid-line);border-radius:8px;overflow:hidden;
+    background:var(--bg-panel);box-shadow:0 20px 60px -20px rgba(0,0,0,.6);
+  }
+  .demo-chrome{display:flex;align-items:center;gap:8px;padding:12px 16px;
+    background:var(--bg-panel-raised);border-bottom:1px solid var(--grid-line);}
+  .demo-chrome .dotc{width:10px;height:10px;border-radius:50%;}
+  .demo-chrome .dotc.r{background:#E5677B;} .demo-chrome .dotc.y{background:#F0A93B;} .demo-chrome .dotc.g{background:#5FE3C6;}
+  .demo-title{font-family:var(--font-mono);font-size:12px;color:var(--text-faint);margin-left:8px;}
+  .demo-body{display:grid;grid-template-columns:auto 1fr;gap:28px;padding:28px;align-items:center;}
+  #grid{
+    display:grid;grid-template-columns:repeat(6,44px);grid-template-rows:repeat(6,44px);
+    gap:3px;background:var(--grid-line);padding:3px;border-radius:6px;
+  }
+  .cell{background:var(--bg-void);position:relative;border-radius:2px;}
+  .cell.wall{background:#232E3F;}
+  .cell.goal{background:rgba(95,227,198,.12);}
+  .cell.goal::after{content:'◎';color:var(--accent-cyan);position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:18px;}
+  .agent{
+    position:absolute;width:30px;height:30px;border-radius:50%;
+    background:var(--accent-amber);top:7px;left:7px;
+    box-shadow:0 0 14px var(--accent-amber);
+    transition:transform .28s cubic-bezier(.4,0,.2,1);
+    display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--bg-void);font-weight:700;
+  }
+  .demo-side h3{font-size:18px;margin-bottom:8px;}
+  .demo-side p{color:var(--text-dim);font-size:14px;margin-bottom:18px;max-width:34ch;}
+  .demo-controls{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px;}
+  .btn{
+    font-family:var(--font-mono);font-size:13px;padding:9px 16px;border-radius:4px;cursor:pointer;
+    border:1px solid var(--grid-line);background:var(--bg-panel-raised);color:var(--text-primary);
+    transition:border-color .15s;
+  }
+  .btn:hover{border-color:var(--accent-cyan);}
+  .btn.ghost{background:transparent;color:var(--text-dim);}
+  .stat-row{display:flex;gap:18px;font-family:var(--font-mono);font-size:12px;margin-bottom:14px;flex-wrap:wrap;}
+  .stat{color:var(--text-faint);}
+  .stat b{color:var(--accent-cyan);font-size:14px;display:block;font-family:var(--font-mono);}
+  #log{
+    font-family:var(--font-mono);font-size:12px;color:var(--text-dim);
+    background:var(--bg-void);border:1px solid var(--grid-line);border-radius:4px;
+    height:90px;overflow-y:auto;padding:10px 12px;
+  }
+  #log div{margin-bottom:3px;}
+  #log .ok{color:var(--accent-cyan);}
+  #log .bad{color:var(--danger);}
+  @media(max-width:700px){.demo-body{grid-template-columns:1fr;}#grid{margin:0 auto;}}
+
+  /* ---------- PROJECTS ---------- */
+  .project{margin-bottom:56px;}
+  .project:last-child{margin-bottom:0;}
+  .project-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;margin-bottom:6px;}
+  .project-head h3{font-size:20px;}
+  .project-date{font-family:var(--font-mono);font-size:12px;color:var(--text-faint);}
+  .stack{font-family:var(--font-mono);font-size:12px;color:var(--accent-amber);margin-bottom:16px;}
+  .project p.desc{color:var(--text-dim);max-width:62ch;margin-bottom:16px;}
+  .project ul{list-style:none;margin-bottom:18px;}
+  .project li{color:var(--text-dim);padding-left:18px;position:relative;margin-bottom:8px;max-width:62ch;}
+  .project li::before{content:'›';position:absolute;left:0;color:var(--accent-cyan);}
+  .diagram{
+    background:var(--bg-panel);border:1px solid var(--grid-line);border-radius:8px;padding:24px;
+    margin-bottom:16px;
+  }
+  .diagram svg{width:100%;height:auto;display:block;}
+  .diagram-caption{font-family:var(--font-mono);font-size:11px;color:var(--text-faint);margin-top:10px;text-align:center;}
+  .proj-links{display:flex;gap:10px;}
+
+  /* ---------- EXPERIENCE / EDUCATION ---------- */
+  .timeline{border-left:1px solid var(--grid-line);margin-left:6px;}
+  .tl-item{position:relative;padding:0 0 32px 28px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{content:'';position:absolute;left:-5px;top:4px;width:9px;height:9px;border-radius:50%;
+    background:var(--bg-void);border:2px solid var(--accent-cyan);}
+  .tl-role{font-size:16px;font-weight:600;}
+  .tl-org{font-family:var(--font-mono);font-size:12px;color:var(--text-faint);margin-bottom:8px;}
+  .tl-item p{color:var(--text-dim);font-size:14px;max-width:56ch;}
+
+  /* ---------- FOOTER / CONTACT ---------- */
+  footer{padding:70px 0 50px;border-top:1px solid var(--grid-line);}
+  footer .sec-title{margin-bottom:14px;}
+  footer p{color:var(--text-dim);max-width:52ch;margin-bottom:28px;}
+  .foot-links{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:40px;}
+  .foot-bottom{font-family:var(--font-mono);font-size:12px;color:var(--text-faint);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none !important;transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">fahad<span class="path">@</span>portfolio<span class="path">:~$</span></div>
+    <div class="navlinks">
+      <a href="#about">about</a>
+      <a href="#projects">projects</a>
+      <a href="#experience">experience</a>
+      <a href="#contact">contact</a>
+    </div>
+    <a class="cv-btn" href="Fahad_Mollah_CV.pdf" download>Get CV</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <canvas id="nn-bg"></canvas>
+  <div class="wrap hero-inner">
+    <div class="hero-text">
+      <div class="eyebrow"><span class="dot"></span> open to Werkstudent · internship · thesis roles</div>
+      <h1 class="name">Fahad Mollah<span class="cursor"></span></h1>
+      <p class="tagline">AI Engineering student who likes building things that <span class="hl">sense, decide, and act</span> on their own, mostly reinforcement learning, computer vision, and autonomous systems.</p>
+      <div class="hero-links">
+        <a class="pill primary" href="#projects">▶ see my projects</a>
+        <a class="pill" href="https://github.com/Fahad4969" target="_blank" rel="noopener">GitHub ↗</a>
+        <a class="pill" href="https://linkedin.com/in/fahad6949" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a class="pill" href="mailto:fahadmollah43@gmail.com">Email</a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <div class="photo-frame">
+        <img src="fahad.jpg" alt="Fahad Mollah" onerror="this.parentElement.classList.add('no-photo')">
+        <div class="photo-fallback">fahad.jpg<br><span>place your photo here</span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">01</span><h2 class="sec-title">About</h2></div>
+    <div class="about-grid">
+      <div class="about">
+        <p>I'm an <strong>AI Engineering master's student</strong> at THI Ingolstadt, and I'm genuinely into systems that can sense, decide, and act on their own. Lately that's meant training reinforcement learning agents from scratch and programming a robotic arm to sort objects in real time.</p>
+        <p>Before the master's, I spent two years in enterprise IT, digging through messy operational data and turning it into something people could actually use. That habit stuck, it's still how I approach technical work now.</p>
+        <p>Right now I'm looking for a <strong>Werkstudent, internship, or thesis opportunity</strong>, something that lets me keep building in AI and robotics.</p>
+      </div>
+      <div class="facts">
+        <div class="row"><span class="k">location</span><span class="v">Ingolstadt, DE</span></div>
+        <div class="row"><span class="k">degree</span><span class="v">M.Eng. AI Engineering</span></div>
+        <div class="row"><span class="k">university</span><span class="v">THI Ingolstadt</span></div>
+        <div class="row"><span class="k">status</span><span class="v">seeking Werkstudent</span></div>
+        <div class="row"><span class="k">languages</span><span class="v">EN · DE (A1) · BN</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">02</span><h2 class="sec-title">Skills</h2></div>
+    <div class="skill-groups">
+      <div class="skill-card">
+        <h4>Programming</h4>
+        <div class="tags"><span class="tag">Python</span><span class="tag">SQL</span><span class="tag">C++</span><span class="tag">JavaScript</span></div>
+      </div>
+      <div class="skill-card">
+        <h4>ML / Data</h4>
+        <div class="tags"><span class="tag">PyTorch</span><span class="tag">TensorFlow</span><span class="tag">OpenCV</span><span class="tag">pandas</span><span class="tag">NumPy</span><span class="tag">scikit-learn</span></div>
+      </div>
+      <div class="skill-card">
+        <h4>Autonomous Systems</h4>
+        <div class="tags"><span class="tag">Sensor Fusion (camera/radar/LiDAR)</span><span class="tag">System ID & Simulation</span><span class="tag">Edge Computing</span><span class="tag">Safety-Critical AI</span></div>
+      </div>
+      <div class="skill-card">
+        <h4>Tools</h4>
+        <div class="tags"><span class="tag">Git</span><span class="tag">Docker</span><span class="tag">Jupyter</span><span class="tag">Linux/CLI</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">03</span><h2 class="sec-title">Projects</h2></div>
+
+    <div class="project">
+      <div class="project-head">
+        <h3>Reinforcement Learning Training Pipeline for Autonomous Inspection</h3>
+      </div>
+      <div class="stack">Python · Pygame · Q-learning · Deep Q-Network</div>
+      <p class="desc">A custom grid-based simulation environment for autonomous safety-inspection tasks, where I trained agents to navigate it both efficiently and safely.</p>
+      <ul>
+        <li>Built the environment from scratch, then trained Q-learning and DQN agents with experience replay, reward shaping, and epsilon-greedy decay.</li>
+        <li>Set up a reproducible training pipeline with fixed seeds and structured configs, so I could compare different agent variants fairly.</li>
+        <li>Tracked convergence, success rate, and episode length along the way, and used that to guide hyperparameter tuning and iron out instability.</li>
+      </ul>
+      <div class="proj-links"><a class="pill" href="https://github.com/Fahad4969" target="_blank" rel="noopener">Code ↗</a></div>
+    </div>
+
+    <div class="project">
+      <div class="project-head">
+        <h3>Autonomous Object Sorting System</h3>
+      </div>
+      <div class="stack">Arduino · Braccio · OpenCV · Motion Control</div>
+      <p class="desc">A robotic arm that sees an object, figures out what it is, and sorts it by color, all on its own, with no manual sorting needed.</p>
+      <div class="diagram">
+        <svg viewBox="0 0 720 160" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="#5FE3C6"/>
+            </marker>
+          </defs>
+          <style>
+            .node{fill:#161F2C;stroke:#20293A;}
+            .label{font-family:'JetBrains Mono',monospace;font-size:12px;fill:#E7EDF4;}
+            .sub{font-family:'JetBrains Mono',monospace;font-size:10px;fill:#7C8B9D;}
+            .edge{stroke:#5FE3C6;stroke-width:1.5;fill:none;marker-end:url(#arrow);}
+          </style>
+          <rect class="node" x="10" y="45" width="140" height="70" rx="6"/>
+          <text class="label" x="80" y="75" text-anchor="middle">Camera</text>
+          <text class="sub" x="80" y="93" text-anchor="middle">sensor input</text>
+
+          <path class="edge" d="M150,80 H210"/>
+          <rect class="node" x="210" y="45" width="150" height="70" rx="6"/>
+          <text class="label" x="285" y="75" text-anchor="middle">OpenCV</text>
+          <text class="sub" x="285" y="93" text-anchor="middle">color detection</text>
+
+          <path class="edge" d="M360,80 H420"/>
+          <rect class="node" x="420" y="45" width="150" height="70" rx="6"/>
+          <text class="label" x="495" y="75" text-anchor="middle">Classifier</text>
+          <text class="sub" x="495" y="93" text-anchor="middle">object → category</text>
+
+          <path class="edge" d="M570,80 H630"/>
+          <rect class="node" x="630" y="45" width="80" height="70" rx="6"/>
+          <text class="label" x="670" y="75" text-anchor="middle">Braccio</text>
+          <text class="sub" x="670" y="93" text-anchor="middle">place</text>
+        </svg>
+        <div class="diagram-caption">how it works: sense → classify → act</div>
+      </div>
+      <ul>
+        <li>Programmed pick-and-place routines for a Braccio robotic arm, including trajectory planning and gripper control.</li>
+        <li>Added a computer-vision-based color-detection module (OpenCV) so the arm could classify and sort objects on its own.</li>
+        <li>Folded the arm into a multi-robot workflow and ran it under continuous operation to check reliability.</li>
+      </ul>
+      <div class="proj-links"><a class="pill" href="https://github.com/Fahad4969" target="_blank" rel="noopener">Code ↗</a></div>
+    </div>
+
+    <div class="project">
+      <div class="project-head">
+        <h3>Mini CNN Framework</h3>
+        <span class="project-date">C++</span>
+      </div>
+      <div class="stack">C++ · Custom Tensor Class · LeNet · MNIST</div>
+      <p class="desc">A convolutional neural network built from scratch in C++, no ML framework underneath, just a hand-written tensor library and my own forward and backward passes.</p>
+      <ul>
+        <li>Implemented a custom tensor class and a LeNet-style architecture: conv layers with ReLU, max-pooling for downsampling, and fully connected layers feeding into a softmax classifier.</li>
+        <li>Trained and evaluated the network on MNIST to validate the from-scratch implementation against a known benchmark.</li>
+        <li>Skipped PyTorch and TensorFlow on purpose, so I'd actually understand what a framework does under the hood: the layer math, the gradients, the memory layout.</li>
+      </ul>
+      <div class="proj-links"><a class="pill" href="https://github.com/Fahad4969/Mini-CNN-Framework" target="_blank" rel="noopener">Code ↗</a></div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">04</span><h2 class="sec-title">Experience & Education</h2></div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-role">M.Eng. AI Engineering of Autonomous Systems</div>
+        <div class="tl-org">Technische Hochschule Ingolstadt · 03/2024 – Present</div>
+        <p>Focused on machine learning, computer vision, and robotics: sensor data fusion, system identification, edge computing, and safety-critical AI. I've picked up reinforcement learning mostly hands-on, through my own projects.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-role">IT Executive</div>
+        <div class="tl-org">Technohaven Company Limited, Dhaka · 07/2022 – 06/2024</div>
+        <p>Dug into operational data from enterprise systems to spot trends, checked data quality before it reached stakeholders, and put together structured reports that turned raw data into something decision-makers could actually use.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-role">IT Intern</div>
+        <div class="tl-org">American International University, Dhaka · 02/2022 – 04/2022</div>
+        <p>Kept university IT systems and network infrastructure running, and built a reference log for recurring issues that cut down repeat-issue response time.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-role">B.Sc. Software Engineering</div>
+        <div class="tl-org">American International University, Bangladesh · 01/2018 – 06/2022</div>
+        <p>Coursework spanned software engineering, algorithms, databases, and object-oriented programming, with an early introduction to AI and expert systems.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">05</span><h2 class="sec-title">Get in touch</h2></div>
+    <p>Open to Werkstudent, internship, and thesis opportunities in AI, machine learning, computer vision, and robotics. I'm based in Ingolstadt and can work up to 20h/week.</p>
+    <div class="foot-links">
+      <a class="pill primary" href="mailto:fahadmollah43@gmail.com">fahadmollah43@gmail.com</a>
+      <a class="pill" href="tel:+491786279412">+49 178 6279412</a>
+      <a class="pill" href="https://github.com/Fahad4969" target="_blank" rel="noopener">GitHub ↗</a>
+      <a class="pill" href="https://linkedin.com/in/fahad6949" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+    <div class="foot-bottom">
+      <span>Fahad Mollah · Ingolstadt, Germany</span>
+      <span>built with HTML · CSS · vanilla JS</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const ROWS=6, COLS=6;
+  const WALLS = new Set(['1,2','2,2','3,2','2,4','3,4','4,1']);
+  const START=[0,0], GOAL=[5,5];
+  const gridEl = document.getElementById('grid');
+  if(!gridEl) return;
+  const cells = {};
+  for(let r=0;r<ROWS;r++){
+    for(let c=0;c<COLS;c++){
+      const div = document.createElement('div');
+      const key = r+','+c;
+      div.className='cell'+(WALLS.has(key)?' wall':'')+((r===GOAL[0]&&c===GOAL[1])?' goal':'');
+      gridEl.appendChild(div);
+      cells[key]=div;
+    }
+  }
+  const agent = document.createElement('div');
+  agent.className='agent';
+  agent.textContent='';
+  cells['0,0'].appendChild(agent);
+
+  // Q-learning setup
+  const actions = [[-1,0],[1,0],[0,-1],[0,1]]; // up down left right
+  let Q = {};
+  function qkey(r,c){return r+','+c;}
+  function getQ(r,c){
+    const k=qkey(r,c);
+    if(!Q[k]) Q[k]=[0,0,0,0];
+    return Q[k];
+  }
+  let epsilon=0.9, alpha=0.5, gamma=0.9;
+  let episodes=0, successes=0;
+
+  const logEl = document.getElementById('log');
+  function log(msg, cls){
+    const d=document.createElement('div');
+    if(cls) d.className=cls;
+    d.textContent=msg;
+    logEl.insertBefore(d, logEl.firstChild);
+    while(logEl.children.length>40) logEl.removeChild(logEl.lastChild);
+  }
+
+  function inBounds(r,c){return r>=0&&r<ROWS&&c>=0&&c<COLS;}
+  function isWall(r,c){return WALLS.has(qkey(r,c));}
+
+  function runEpisode(animate){
+    let r=START[0], c=START[1];
+    let steps=0, path=[[r,c]];
+    const maxSteps=60;
+    while(steps<maxSteps){
+      const q=getQ(r,c);
+      let a;
+      if(Math.random()<epsilon){ a=Math.floor(Math.random()*4); }
+      else { a=q.indexOf(Math.max(...q)); }
+      let [dr,dc]=actions[a];
+      let nr=r+dr, nc=c+dc;
+      let reward=-1;
+      if(!inBounds(nr,nc) || isWall(nr,nc)){ nr=r; nc=c; reward=-3; }
+      if(nr===GOAL[0] && nc===GOAL[1]) reward=10;
+      const nq=getQ(nr,nc);
+      q[a]=q[a]+alpha*(reward+gamma*Math.max(...nq)-q[a]);
+      r=nr;c=nc;steps++;
+      path.push([r,c]);
+      if(r===GOAL[0]&&c===GOAL[1]) break;
+    }
+    epsilon=Math.max(0.05, epsilon*0.96);
+    episodes++;
+    const reachedGoal = (r===GOAL[0]&&c===GOAL[1]);
+    if(reachedGoal) successes++;
+    document.getElementById('stat-eps').textContent=episodes;
+    document.getElementById('stat-success').textContent=Math.round(100*successes/episodes)+'%';
+    document.getElementById('stat-steps').textContent=steps;
+    log('episode '+episodes+' — '+(reachedGoal? 'reached goal in '+steps+' steps':'timed out')+' (ε='+epsilon.toFixed(2)+')', reachedGoal?'ok':'bad');
+    if(animate) animatePath(path);
+    return reachedGoal;
+  }
+
+  let animTimer=null;
+  function animatePath(path){
+    let i=0;
+    if(animTimer) clearInterval(animTimer);
+    animTimer=setInterval(()=>{
+      if(i>=path.length){clearInterval(animTimer);return;}
+      const [r,c]=path[i];
+      agent.style.transform = `translate(${c*47}px, ${r*47}px)`;
+      i++;
+    }, 90);
+  }
+
+  document.getElementById('btn-step').addEventListener('click', ()=>runEpisode(true));
+  document.getElementById('btn-train').addEventListener('click', ()=>{
+    for(let i=0;i<49;i++) runEpisode(false);
+    runEpisode(true);
+  });
+  document.getElementById('btn-reset').addEventListener('click', ()=>{
+    Q={}; epsilon=0.9; episodes=0; successes=0;
+    document.getElementById('stat-eps').textContent='0';
+    document.getElementById('stat-success').textContent='—';
+    document.getElementById('stat-steps').textContent='—';
+    logEl.innerHTML='';
+    agent.style.transform='translate(0px,0px)';
+    log('reset — Q-table cleared');
+  });
+
+  log('ready — click "Run 1 episode" to start training');
+})();
+
+// ---- In-page section links: scroll within the page, never navigate away ----
+(function(){
+  document.querySelectorAll('a[href^="#"]').forEach(link=>{
+    link.addEventListener('click', function(e){
+      const id = this.getAttribute('href').slice(1);
+      const target = document.getElementById(id);
+      if(target){
+        e.preventDefault();
+        target.scrollIntoView({behavior:'smooth', block:'start'});
+        history.replaceState(null, '', '#'+id);
+      }
+    });
+  });
+})();
+
+
+// ---- Neural network hero background ----
+(function(){
+  const canvas = document.getElementById('nn-bg');
+  const ctx = canvas.getContext('2d');
+  const hero = document.querySelector('header.hero');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let W, H, layers, nodes, pulses;
+
+  function layout(){
+    W = canvas.width = hero.clientWidth;
+    H = canvas.height = hero.clientHeight;
+    const counts = [4,6,7,5,3];
+    layers = counts.map((n,li)=>{
+      const x = (W/(counts.length-1))*li;
+      const arr = [];
+      for(let i=0;i<n;i++){
+        const y = (H/(n+1))*(i+1);
+        arr.push({x,y});
+      }
+      return arr;
+    });
+    nodes = layers.flat();
+    pulses = [];
+    for(let l=0;l<layers.length-1;l++){
+      for(let i=0;i<3;i++) spawnPulse(l);
+    }
+  }
+  function spawnPulse(layerIdx){
+    const from = layers[layerIdx][Math.floor(Math.random()*layers[layerIdx].length)];
+    const to = layers[layerIdx+1][Math.floor(Math.random()*layers[layerIdx+1].length)];
+    pulses.push({from,to,t:Math.random(),speed:0.006+Math.random()*0.008,layerIdx});
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    ctx.strokeStyle='rgba(32,41,58,0.9)';
+    ctx.lineWidth=1;
+    for(let l=0;l<layers.length-1;l++){
+      for(const a of layers[l]){
+        for(const b of layers[l+1]){
+          ctx.beginPath();
+          ctx.moveTo(a.x,a.y);
+          ctx.lineTo(b.x,b.y);
+          ctx.stroke();
+        }
+      }
+    }
+    for(const n of nodes){
+      ctx.beginPath();
+      ctx.arc(n.x,n.y,3.2,0,Math.PI*2);
+      ctx.fillStyle='#2B3A4E';
+      ctx.fill();
+    }
+    if(!reduceMotion){
+      for(const p of pulses){
+        const x = p.from.x + (p.to.x-p.from.x)*p.t;
+        const y = p.from.y + (p.to.y-p.from.y)*p.t;
+        ctx.beginPath();
+        ctx.arc(x,y,2.6,0,Math.PI*2);
+        ctx.fillStyle = p.layerIdx%2===0 ? '#5FE3C6' : '#F0A93B';
+        ctx.shadowColor = ctx.fillStyle;
+        ctx.shadowBlur = 8;
+        ctx.fill();
+        ctx.shadowBlur = 0;
+        p.t += p.speed;
+        if(p.t>=1){
+          p.t=0;
+          p.from = layers[p.layerIdx][Math.floor(Math.random()*layers[p.layerIdx].length)];
+          p.to = layers[p.layerIdx+1][Math.floor(Math.random()*layers[p.layerIdx+1].length)];
+        }
+      }
+    }
+  }
+  function loop(){ draw(); if(!reduceMotion) requestAnimationFrame(loop); }
+  layout();
+  window.addEventListener('resize', layout);
+  if(reduceMotion){ draw(); } else { loop(); }
+})();
+
+</script>
+
+</body>
+</html>
