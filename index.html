@@ -321,6 +321,59 @@
 
     <div class="project">
       <div class="project-head">
+        <h3>DocAgent: Study Assistant for Lecture Slides</h3>
+        <span class="project-date">RAG</span>
+      </div>
+      <div class="stack">Python · LangChain · Chroma · Sentence-Transformers · PyMuPDF · Groq</div>
+      <p class="desc">A retrieval-augmented study assistant for my Master's lecture slides. Ask a question, it finds the most relevant slides and an LLM answers using only those slides, citing the file and slide number for every source.</p>
+      <div class="diagram">
+        <svg viewBox="0 0 720 160" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arrow-rag" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="#5FE3C6"/>
+            </marker>
+          </defs>
+          <style>
+            .edge-rag{stroke:#5FE3C6;stroke-width:1.5;fill:none;marker-end:url(#arrow-rag);}
+          </style>
+          <rect class="node" x="10" y="45" width="140" height="70" rx="6"/>
+          <text class="label" x="80" y="75" text-anchor="middle">57 PDFs</text>
+          <text class="sub" x="80" y="93" text-anchor="middle">1 chunk / slide</text>
+
+          <path class="edge-rag" d="M150,80 H210"/>
+          <rect class="node" x="210" y="45" width="150" height="70" rx="6"/>
+          <text class="label" x="285" y="75" text-anchor="middle">Embed + Chroma</text>
+          <text class="sub" x="285" y="93" text-anchor="middle">MiniLM-L6-v2</text>
+
+          <path class="edge-rag" d="M360,80 H420"/>
+          <rect class="node" x="420" y="45" width="150" height="70" rx="6"/>
+          <text class="label" x="495" y="75" text-anchor="middle">Retrieve top 6</text>
+          <text class="sub" x="495" y="93" text-anchor="middle">optional course filter</text>
+
+          <path class="edge-rag" d="M570,80 H630"/>
+          <rect class="node" x="630" y="45" width="80" height="70" rx="6"/>
+          <text class="label" x="670" y="75" text-anchor="middle">LLM</text>
+          <text class="sub" x="670" y="93" text-anchor="middle">cited answer</text>
+        </svg>
+        <div class="diagram-caption">how it works: ingest → embed → retrieve → answer with citations</div>
+      </div>
+      <div class="stat-row">
+        <div class="stat"><b>1,874</b>slide chunks</div>
+        <div class="stat"><b>75%</b>hit@6</div>
+        <div class="stat"><b>90%</b>hit@10</div>
+        <div class="stat"><b>0.524</b>MRR</div>
+      </div>
+      <ul>
+        <li>Built an ingestion pipeline over 57 lecture PDFs (2,678 slides) from two courses: one chunk per slide, with repeated headers, near-empty slides and 569 duplicate recap slides removed.</li>
+        <li>Chose slide-level chunking over fixed-size chunks: each slide is already one topic, and it gives exact, checkable citations.</li>
+        <li>Wrote a retrieval evaluation on 20 hand-labelled questions (hit@k, MRR). Deduplication raised hit@6 from 70% to 75% and gave the LLM 6 distinct slides instead of 5.</li>
+        <li>Documented the limits honestly: formulas are lost in PDF text extraction, and a reranker plus claim-level citation checks are the next steps.</li>
+      </ul>
+      <div class="proj-links"><a class="pill" href="https://github.com/Fahad4969/DocAgent" target="_blank" rel="noopener">Code ↗</a></div>
+    </div>
+
+    <div class="project">
+      <div class="project-head">
         <h3>Reinforcement Learning Training Pipeline for Autonomous Inspection</h3>
       </div>
       <div class="stack">Python · Pygame · Q-learning · Deep Q-Network</div>
