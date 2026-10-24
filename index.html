@@ -311,6 +311,14 @@
         <h4>Tools</h4>
         <div class="tags"><span class="tag">Git</span><span class="tag">Docker</span><span class="tag">Jupyter</span><span class="tag">Linux/CLI</span></div>
       </div>
+      <div class="skill-card">
+        <h4>LLMs / RAG</h4>
+        <div class="tags"><span class="tag">LangChain</span><span class="tag">RAG</span><span class="tag">Chroma</span><span class="tag">Hugging Face</span><span class="tag">Prompt Engineering</span><span class="tag">Retrieval Eval (hit@k, MRR)</span></div>
+      </div>
+      <div class="skill-card">
+        <h4>Robotics / RL</h4>
+        <div class="tags"><span class="tag">Reinforcement Learning (Q-learning, DQN)</span><span class="tag">Arduino</span><span class="tag">Motion Control</span><span class="tag">Pygame (simulation)</span></div>
+      </div>
     </div>
   </div>
 </section>
@@ -378,6 +386,43 @@
       </div>
       <div class="stack">Python · Pygame · Q-learning · Deep Q-Network</div>
       <p class="desc">A custom grid-based simulation environment for autonomous safety-inspection tasks, where I trained agents to navigate it both efficiently and safely.</p>
+      <div class="diagram">
+        <svg viewBox="0 0 720 180" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arrow-rl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="#5FE3C6"/>
+            </marker>
+          </defs>
+          <style>
+            .edge-rl{stroke:#5FE3C6;stroke-width:1.5;fill:none;marker-end:url(#arrow-rl);}
+          </style>
+          <rect class="node" x="10" y="55" width="120" height="70" rx="6"/>
+          <text class="label" x="70" y="85" text-anchor="middle">Config</text>
+          <text class="sub" x="70" y="103" text-anchor="middle">fixed seeds</text>
+
+          <path class="edge-rl" d="M130,90 H190"/>
+          <rect class="node" x="190" y="40" width="150" height="100" rx="6"/>
+          <text class="label" x="265" y="82" text-anchor="middle">Environment</text>
+          <text class="sub" x="265" y="100" text-anchor="middle">grid inspection sim</text>
+          <text class="sub" x="265" y="114" text-anchor="middle">shaped rewards</text>
+
+          <path class="edge-rl" d="M340,65 H430"/>
+          <text class="sub" x="385" y="55" text-anchor="middle">state, reward</text>
+          <path class="edge-rl" d="M430,115 H340"/>
+          <text class="sub" x="385" y="135" text-anchor="middle">action</text>
+
+          <rect class="node" x="430" y="40" width="150" height="100" rx="6"/>
+          <text class="label" x="505" y="82" text-anchor="middle">Agent</text>
+          <text class="sub" x="505" y="100" text-anchor="middle">Q-learning / DQN</text>
+          <text class="sub" x="505" y="114" text-anchor="middle">replay · ε-greedy</text>
+
+          <path class="edge-rl" d="M580,90 H630"/>
+          <rect class="node" x="630" y="55" width="80" height="70" rx="6"/>
+          <text class="label" x="670" y="85" text-anchor="middle">Metrics</text>
+          <text class="sub" x="670" y="103" text-anchor="middle">success rate</text>
+        </svg>
+        <div class="diagram-caption">how it works: agent acts → environment rewards → agent learns, tracked per run</div>
+      </div>
       <ul>
         <li>Built the environment from scratch, then trained Q-learning and DQN agents with experience replay, reward shaping, and epsilon-greedy decay.</li>
         <li>Set up a reproducible training pipeline with fixed seeds and structured configs, so I could compare different agent variants fairly.</li>
